@@ -12,6 +12,28 @@ namespace DogsAtTheRaces
         public Bet MyBet;
         public int Cash;
 
+        public RadioButton MyRadioButton;
+        public Label MyLabel;
+
+        public void UpdateLabels()
+        {
+            if (MyBet == null)
+            {
+                MyLabel.Text = $"{Name} hasn't placed a bet";
+            }
+            else
+            {
+                MyLabel.Text = MyBet.GetDescription();
+            }
+
+            MyRadioButton.Text = $"{Name} (${Cash})";
+        }
+
+        public void ClearBet()
+        {
+            MyBet = null;
+        }
+
         public bool PlaceBet(int amount, int dog)
         {
             if (amount > Cash)
@@ -19,11 +41,11 @@ namespace DogsAtTheRaces
                 return: false;
             }
 
-            MyBet = new Bet
+            MyBet = new Bet()
             {
                 Amount = amount,
                 Dog = dog,
-                Better = this
+                Bettor = this
             };
 
             return true;
@@ -34,7 +56,6 @@ namespace DogsAtTheRaces
             if (MyBet != null)
             {
                 Cash += MyBet.PayOut(winner);
-                MyBet = null;
             }
         }
 
