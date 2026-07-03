@@ -56,6 +56,7 @@ namespace DogsAtTheRaces
             if (MyBet != null)
             {
                 Cash += MyBet.PayOut(winner);
+                MyBet = null;
             }
         }
 
