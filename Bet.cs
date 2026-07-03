@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DogsAtTheRaces
 {
-    internal class Bet
+    public class Bet
     {
         public int Amount;
         public int Dog;
@@ -23,5 +23,14 @@ namespace DogsAtTheRaces
                 return -Amount;
             }
         }
+
+        public string GetDescription()
+        {
+            if (Bettor == null)
+                return "No bet placed";
+
+            return $"{Bettor.Name} bets {Amount} on dog {Dog}";
+        }
+
     }
 }

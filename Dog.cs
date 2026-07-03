@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DogsAtTheRaces
 {
-    internal class Dog
+    public class Dog
     {
         public static Random Randomizer = new Random();
 

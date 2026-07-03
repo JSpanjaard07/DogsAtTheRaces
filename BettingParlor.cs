@@ -5,6 +5,8 @@ public partial class BettingParlor : Form
 
     private Dog[] dogs = new Dog[4];
     private Guy[] guys = new Guy[3];
+    private bool raceRunning = false;
+
 
 
     public BettingParlor()
@@ -26,14 +28,19 @@ public partial class BettingParlor : Form
 
     private void bt_bet_Click(object sender, EventArgs e)
     {
+        if (raceRunning)
+        {
+            MessageBox.Show("You can't bet while the race is running!");
+            return;
+        }
+
         Guy selectedGuy = null;
 
         if (rb_Guy1.Checked) selectedGuy = guys[0];
-        if (rb_Guy2.Checked) selectedGuy = guys[1];
-        if (rb_Guy3.Checked) selectedGuy = guys[2];
+        else if (rb_Guy2.Checked) selectedGuy = guys[1];
+        else if (rb_Guy3.Checked) selectedGuy = guys[2];
 
-        if (selectedGuy == null)
-            return;
+        if (selectedGuy == null) return;
 
         int dog = (int)num_dogNumber.Value;
 
@@ -43,6 +50,11 @@ public partial class BettingParlor : Form
 
     private void bt_race_Click(object sender, EventArgs e)
     {
+        if (raceRunning)
+            return;
+
+        raceRunning = true;
+
         foreach (Dog d in dogs)
             d.TakeStartingPosition();
 

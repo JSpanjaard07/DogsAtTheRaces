@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DogsAtTheRaces
 {
-    internal class Guy
+    public class Guy
     {
         public string Name;
         public Bet MyBet;
@@ -38,7 +38,7 @@ namespace DogsAtTheRaces
         {
             if (amount > Cash)
             {
-                return: false;
+                return false;
             }
 
             MyBet = new Bet()
