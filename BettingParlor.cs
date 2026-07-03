@@ -6,6 +6,7 @@ public partial class BettingParlor : Form
     private Dog[] dogs = new Dog[4];
     private Guy[] guys = new Guy[3];
     private bool raceRunning = false;
+    private int currentBetAmount = 5;
 
 
 
@@ -44,8 +45,19 @@ public partial class BettingParlor : Form
 
         int dog = (int)num_dogNumber.Value;
 
-        selectedGuy.PlaceBet(5, dog);
+        if (dog < 1 || dog > 4)
+        {
+            MessageBox.Show("Please choose a dog between 1 and 4.");
+            return;
+        }
+
+        selectedGuy.PlaceBet(currentBetAmount, dog);
         selectedGuy.UpdateLabels();
+
+        currentBetAmount++;
+
+        if (currentBetAmount > 15)
+            currentBetAmount = 15;
     }
 
     private void bt_race_Click(object sender, EventArgs e)
